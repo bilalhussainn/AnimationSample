@@ -1,0 +1,50 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--<style name="SecondActivityTheme" parent="android:Theme.Material">
+        &lt;!&ndash; Customize your theme here. &ndash;&gt;
+        &lt;!&ndash; enable window content transitions &ndash;&gt;
+        <item name="android:windowActivityTransitions">true</item>
+
+        &lt;!&ndash; specify enter and exit transitions &ndash;&gt;
+        <item name="android:windowEnterTransition">@transition/explode</item>
+        <item name="android:windowExitTransition">@transition/explode</item>
+
+        &lt;!&ndash; specify shared element transitions &ndash;&gt;
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/change_image_transform
+        </item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/change_image_transform
+        </item>
+    </style>-->
+
+
+    <style name="OtpTheme" parent="AppTheme">
+        <!--<item name="android:inputType">number</item>-->
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/aqua_marine</item>
+        <!-- underline color -->
+        <item name="android:backgroundTint">@color/aqua_marine</item>
+        <item name="colorAccent">@color/aqua_marine</item>
+        <item name="android:textCursorDrawable">@drawable/edittext_cursor_color</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:ems">1</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:minWidth">35dp</item>
+
+        <item name="colorControlNormal">@color/aqua_marine</item>
+        <item name="colorControlActivated">@color/aqua_marine</item>
+        <item name="colorControlHighlight">@color/aqua_marine</item>
+
+    </style>
+
+</resources>

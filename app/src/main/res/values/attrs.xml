@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="OtpView">
+        <attr name="count" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="TestView">
+        <attr name="bgColor" format="color" />
+    </declare-styleable>
+
+
+
+</resources>
