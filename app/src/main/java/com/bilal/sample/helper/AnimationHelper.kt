@@ -1,7 +1,6 @@
 package com.bilal.sample.helper
 
-import android.animation.Animator
-import android.animation.ObjectAnimator
+import android.animation.*
 import android.content.Context
 import android.view.View
 import android.view.animation.*
@@ -9,6 +8,8 @@ import com.bilal.sample.R
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.TextView
+import android.view.View.*
+
 
 object AnimationHelper {
 
@@ -27,13 +28,14 @@ object AnimationHelper {
     fun fadeOut(vararg view: View) {
         val alphaAnimation = AlphaAnimation(1.0f, 0.0f)
         alphaAnimation.duration = SHORT_ANIMATION_DURATION
-        alphaAnimation.setAnimationListener(object : Animation.AnimationListener{
+        alphaAnimation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(p0: Animation?) {}
             override fun onAnimationEnd(p0: Animation?) {
                 for (item in view) {
                     item.visibility = View.INVISIBLE
                 }
             }
+
             override fun onAnimationStart(p0: Animation?) {}
         })
         for (item in view) {
@@ -41,7 +43,7 @@ object AnimationHelper {
         }
     }
 
-    fun slideUp(context: Context, enableFade : Boolean,vararg view: View) {
+    fun slideUp(context: Context, enableFade: Boolean, vararg view: View) {
 
         var animationSet = AnimationSet(true)
 
@@ -54,7 +56,7 @@ object AnimationHelper {
         animationSet.addAnimation(translateAnimation)
 
         //Alpha Animation
-        if(enableFade) {
+        if (enableFade) {
             var alphaAnim: Animation = AlphaAnimation(0.0f, 1.0f)
             alphaAnim.duration = 500
             alphaAnim.interpolator = AccelerateDecelerateInterpolator()
@@ -66,7 +68,7 @@ object AnimationHelper {
         }
     }
 
-    fun scaleIn(context: Context, enableFade : Boolean, vararg view: View) {
+    fun scaleIn(context: Context, enableFade: Boolean, vararg view: View) {
 
         var startScale = 3f
         var endScale = 1f
@@ -85,7 +87,7 @@ object AnimationHelper {
         animationSet.addAnimation(scaleAnimation)
 
         //Alpha Animation
-        if(enableFade) {
+        if (enableFade) {
             var alphaAnim: Animation = AlphaAnimation(0.0f, 1.0f)
             alphaAnim.duration = 500
             alphaAnim.interpolator = AccelerateDecelerateInterpolator()
@@ -109,7 +111,7 @@ object AnimationHelper {
         v.startAnimation(anim)
     }
 
-    fun rotateAnimation(view : View){
+    fun rotateAnimation(view: View) {
 
         var startScale = 3f
         var endScale = 1f
@@ -123,7 +125,7 @@ object AnimationHelper {
                 Animation.RELATIVE_TO_SELF, .5f, // Pivot point of X scaling
                 Animation.RELATIVE_TO_SELF, .5f) // Pivot point of Y scaling
         scaleAnimation.duration = 1000
-        scaleAnimation.repeatMode =  Animation.REVERSE   //Animation.REVERSE
+        scaleAnimation.repeatMode = Animation.REVERSE   //Animation.REVERSE
         scaleAnimation.repeatCount = 1
         scaleAnimation.startOffset = 500
         //scaleAnimation.fillAfter = true
@@ -131,16 +133,15 @@ object AnimationHelper {
         scaleAnimation.interpolator = easyInAnimation
         animationSet.addAnimation(scaleAnimation)
 
-        val rotateAnimation = RotateAnimation(0f,360f,
-                Animation.RELATIVE_TO_SELF,.5f,
-                Animation.RELATIVE_TO_SELF,.5f)
+        val rotateAnimation = RotateAnimation(0f, 360f,
+                Animation.RELATIVE_TO_SELF, .5f,
+                Animation.RELATIVE_TO_SELF, .5f)
         rotateAnimation.duration = 1000
         rotateAnimation.interpolator = AccelerateDecelerateInterpolator()
-        rotateAnimation.repeatMode =  Animation.REVERSE   //Animation.REVERSE
+        rotateAnimation.repeatMode = Animation.REVERSE   //Animation.REVERSE
         rotateAnimation.repeatCount = 1
         rotateAnimation.startOffset = 500
         //rotateAnimation.fillAfter = true
-
 
 
         animationSet.addAnimation(rotateAnimation)
@@ -151,14 +152,88 @@ object AnimationHelper {
         view.startAnimation(animationSet)
     }
 
-    fun objectAnimator(view : View){
+    fun objectAnimator(view: View) {
 
-        var objectAnimator = ObjectAnimator.ofFloat(view,"alpha",0f,1f).apply {
-            duration =5000
+        var alpha = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f)
+        alpha.duration = 3000
 
 
-            addListener(object : Animator.AnimatorListener{
+        var scaleDownX = ObjectAnimator.ofFloat(view, "scaleX", 0.5f)
+        var scaleDownY = ObjectAnimator.ofFloat(view, "scaleY", 0.5f)
+        scaleDownX.duration = 3000
+        scaleDownY.duration = 3000
+
+
+        // ---- 1st Way ---- //
+        //alpha.start()
+        //scaleDownX.start()
+        //scaleDownY.start()
+
+        // ---- 2st Way ---- //
+/*        var animatorSet1 = AnimatorSet()
+        animatorSet1.play(alpha).with(scaleDownX).with(scaleDownY)
+        animatorSet1.start()*/
+
+
+        // ---- 3rd Way ---- //  //Parallel Animations
+        /*var animatorSet = AnimatorSet()
+        animatorSet.playTogether(scaleDownX, scaleDownY, alpha)
+        animatorSet.start()*/
+
+        // ---- 4th Way ---- //  //Serial Animations
+        /*var animatorSet3 = AnimatorSet()
+        animatorSet3.playSequentially(scaleDownX, scaleDownY, alpha)
+        animatorSet3.start()*/
+
+
+    }
+
+    fun valueAnimator(view: View) {
+        ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = 2000
+            setTarget(view)
+            addUpdateListener {
+                view.alpha = it.animatedValue as Float
+            }
+            start()
+
+        }
+    }
+
+
+    fun multiplePropertyAnimator(view: View) {
+
+        val pvhX = PropertyValuesHolder.ofFloat(TRANSLATION_X, 450f)
+        val pvhY = PropertyValuesHolder.ofFloat(TRANSLATION_Y, 450f)
+        val scaleX = PropertyValuesHolder.ofFloat(SCALE_X, 2f)
+        val scaleY = PropertyValuesHolder.ofFloat(SCALE_Y, 2f)
+        val rotateX = PropertyValuesHolder.ofFloat(ROTATION_X, 360f)
+        val rotateY = PropertyValuesHolder.ofFloat(ROTATION_Y, 360f)
+        val alpha = PropertyValuesHolder.ofFloat(ALPHA, 0.5f, 1f)
+        val animator = ObjectAnimator.ofPropertyValuesHolder(view, alpha, pvhX, pvhY, scaleX, scaleY, rotateX, rotateY)
+        animator.duration = 1000 * 2
+        animator.start()
+    }
+
+    fun resourcePropertyAnimation(context: Context, view: View) {
+
+        (AnimatorInflater.loadAnimator(context, R.animator.set_x_y_alpha) as AnimatorSet).apply {
+            setTarget(view)  //sets a single target object for all children of the AnimatorSet
+            start()
+        }
+    }
+
+
+
+    fun resValueAnimator(context: Context, view: View) {
+        (AnimatorInflater.loadAnimator(context, R.animator.value_animator) as ValueAnimator).apply {
+
+            addListener(object : Animator.AnimatorListener {
                 override fun onAnimationRepeat(animation: Animator?) {
+
+                }
+
+                override fun onAnimationEnd(animation: Animator?) {
                     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
@@ -170,15 +245,32 @@ object AnimationHelper {
                     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
-                override fun onAnimationEnd(animation: Animator?) {
-
-                }
-
             })
+
+            addUpdateListener { updatedAnimation ->
+                view.translationX = updatedAnimation.animatedValue as Float
+            }
+            start()
         }
-
-        objectAnimator.start()
-
     }
+
+
+/*    stream.addProperty("drawing:elevation", getElevation())
+    stream.addProperty("drawing:translationX", getTranslationX())
+    stream.addProperty("drawing:translationY", getTranslationY())
+    stream.addProperty("drawing:translationZ", getTranslationZ())
+    stream.addProperty("drawing:rotation", getRotation())
+    stream.addProperty("drawing:rotationX", getRotationX())
+    stream.addProperty("drawing:rotationY", getRotationY())
+    stream.addProperty("drawing:scaleX", getScaleX())
+    stream.addProperty("drawing:scaleY", getScaleY())
+    stream.addProperty("drawing:pivotX", getPivotX())
+    stream.addProperty("drawing:pivotY", getPivotY())
+    stream.addProperty("drawing:clipBounds",
+    if (mClipBounds == null) null else mClipBounds.toString())
+    stream.addProperty("drawing:opaque", isOpaque())
+    stream.addProperty("drawing:alpha", getAlpha())
+    stream.addProperty("drawing:transitionAlpha", getTransitionAlpha())*/
+
 
 }

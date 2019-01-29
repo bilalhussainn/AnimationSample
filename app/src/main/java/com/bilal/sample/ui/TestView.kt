@@ -11,9 +11,7 @@ import android.util.AttributeSet
 import android.view.View
 import com.bilal.sample.R
 
-class
-TestView
-@JvmOverloads constructor(
+class TestView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0,

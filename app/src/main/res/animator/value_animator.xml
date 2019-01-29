@@ -1,0 +1,19 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:ordering="sequentially">
+    <set>
+        <animator
+            android:duration="1000"
+            android:valueFrom="0f"
+            android:valueTo="-100f"
+            android:valueType="floatType" />
+        <animator
+            android:duration="1000"
+            android:valueFrom="0f"
+            android:valueTo="-100f"
+            android:valueType="floatType" />
+    </set>
+    <objectAnimator
+        android:duration="5000"
+        android:propertyName="alpha"
+        android:valueTo="1f" />
+</set>
