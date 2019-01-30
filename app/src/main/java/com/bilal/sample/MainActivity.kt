@@ -3,18 +3,14 @@ package com.bilal.sample
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
-import android.app.ActivityOptions
-import android.content.Intent
 import android.graphics.Path
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
-import android.view.animation.PathInterpolator
-import kotlinx.android.synthetic.main.activity_main.*
 import com.bilal.sample.helper.AnimationHelper
-import kotlinx.android.synthetic.main.layout_otp_view.*
+import kotlinx.android.synthetic.main.activity_main.*
+import com.bilal.sample.helper.AnimatorHelper
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,22 +27,35 @@ class MainActivity : AppCompatActivity() {
 
         otp_view.setListener(object : OtpView.OtpEventListener{
             override fun onCompleteOtpEntered() {
-                //call api in presenter.
 
             }
         })
 
+        //Your App ID:  08c48a31-0ba7-4e72-bd6c-201434a285c7
         otp_view.setOtp("132432")*/
 
 
-        //Your App ID:  08c48a31-0ba7-4e72-bd6c-201434a285c7
 
 
-    //    AnimationHelper.fadeIn(test_view)
-    //    AnimationHelper.slideUp(this,true, test_view,test_view2)
-    //    AnimationHelper.scaleIn(this,true, test_view3,test_view4)
+        //Animation API
+
+        //AnimationHelper.fadeIn(test_view)
+        //AnimationHelper.fadeOut(test_view)
+        //AnimationHelper.slideUp(this,true, test_view,test_view2)
+        //AnimationHelper.scaleIn(this,true, test_view3,test_view4)
+        //AnimationHelper.rotateAnimation(test_view)
+        //AnimationHelper.animationFromResource(this,test_view)
 
 
+
+        //Animator API
+
+        //AnimatorHelper.objectAnimator(text_int)
+        //AnimatorHelper.valueAnimator(text_int)
+        //AnimatorHelper.shake(text_int)
+        //AnimatorHelper.multiplePropertyAnimator(text_int)
+        //AnimatorHelper.resourcePropertyAnimation(this,text_int)
+        AnimatorHelper.resValueAnimator(this,text_int)
 
 
 
@@ -68,21 +77,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    //    AnimationHelper.rotateAnimation(test_view)
 
-
-    //    AnimationHelper.objectAnimator(text_int)
-
-        //AnimationHelper.valueAnimator(text_int)
-
-
-        //AnimationHelper.multiplePropertyAnimator(text_int)
-
-
-     //   AnimationHelper.resourcePropertyAnimation(this,text_int)
-
-
-     //   AnimationHelper.resValueAnimator(this,text_int)
 
 
         /*Handler().postDelayed({
@@ -93,7 +88,7 @@ class MainActivity : AppCompatActivity() {
 
       //  crossfade()
 
-        curvedPath()
+    //    curvedPath()
 
 
     }
@@ -148,7 +143,7 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val path = Path().apply {
                 lineTo(600f,300f)
-                moveTo(600f,300f)
+             //   moveTo(600f,300f)
                 arcTo(0f, 0f, 600f, 600f, 0f, -180f, true)
             }
             val animator = ObjectAnimator.ofFloat(text_int, View.X, View.Y, path).apply {

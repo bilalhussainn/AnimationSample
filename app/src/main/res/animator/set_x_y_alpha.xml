@@ -1,20 +1,27 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:ordering="sequentially"
-    >
-    <set>
-        <objectAnimator
-            android:propertyName="x"
-            android:duration="5000"
-            android:valueTo="400"
-            android:valueType="intType"/>
-        <objectAnimator
-            android:propertyName="y"
-            android:duration="5000"
-            android:valueTo="300"
-            android:valueType="intType"/>
-    </set>
+    android:ordering="sequentially">
+
     <objectAnimator
+        android:duration="1000"
+        android:propertyName="x"
+        android:valueTo="400"
+        android:valueType="floatType" />
+
+    <objectAnimator
+        android:duration="1000"
+        android:propertyName="y"
+        android:valueTo="400"
+        android:valueType="floatType" />
+
+    <objectAnimator
+        android:duration="1000"
         android:propertyName="alpha"
-        android:duration="5000"
-        android:valueTo="1f"/>
+        android:valueTo="0f" />
+
 </set>
+
+<!--
+ValueAnimator - <animator>
+ObjectAnimator - <objectAnimator>
+AnimatorSet - <set>
+-->
