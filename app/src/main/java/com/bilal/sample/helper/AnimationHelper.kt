@@ -8,7 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 
 
-object AnimationHelper {
+object AnimationHelper {  //Api Level 1
 
     const val SHORT_ANIMATION_DURATION = 200L
     const val LONG_ANIMATION_DURATION = 400L
@@ -152,5 +152,11 @@ object AnimationHelper {
         val animShake: Animation = AnimationUtils.loadAnimation(context, R.anim.anim_rotate_alpha)
         view.startAnimation(animShake)
     }
+
+    //Remaining
+
+    //  animationSet.isFillEnabled = true
+
+
 
 }

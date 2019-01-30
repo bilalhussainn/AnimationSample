@@ -18,6 +18,17 @@
             android:scaleType="centerCrop"
             android:contentDescription="@string/app_name" />
 
+
+        <TextView
+            android:id="@+id/text_sample"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="SAMPLE TEXT"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="100dp"
+            android:singleLine="true"
+            />
     </LinearLayout>
 
     <!-- This initially-hidden ImageView will hold the expanded/zoomed version of

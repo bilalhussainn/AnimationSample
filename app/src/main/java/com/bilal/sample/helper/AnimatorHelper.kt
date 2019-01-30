@@ -6,12 +6,15 @@ import android.view.View
 import com.bilal.sample.R
 import android.support.v4.view.ViewCompat.setTranslationX
 import android.animation.ValueAnimator
+import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
+import android.view.animation.BounceInterpolator
+import android.view.animation.PathInterpolator
 import android.widget.TextView
 
 
 
-object AnimatorHelper{
+object AnimatorHelper{  //Api Level 11
 
 
     fun objectAnimator(view: View) {
@@ -52,13 +55,14 @@ object AnimatorHelper{
     }
 
     fun valueAnimator(view: View) {
-        ValueAnimator.ofFloat(0f, 1f).apply {
+        ValueAnimator.ofFloat(0f, 300f).apply {
+            interpolator = BounceInterpolator()
             duration = 2000
             repeatMode= ValueAnimator.REVERSE
             repeatCount = 2
             setTarget(view)
             addUpdateListener {
-                view.alpha = it.animatedValue as Float
+                view.translationX = it.animatedValue as Float
             }
             start()
         }

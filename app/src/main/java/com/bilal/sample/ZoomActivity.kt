@@ -17,7 +17,8 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
 import android.app.Activity
 import android.content.Intent
-
+import android.support.v4.util.Pair
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class ZoomActivity : AppCompatActivity() {
@@ -40,10 +41,20 @@ class ZoomActivity : AppCompatActivity() {
             //zoomImageFromThumb(thumb_button_1, R.drawable.ic_launcher_background)
 
             //Activity Transition
-            val intent = Intent(this, SecondActivity::class.java)
+            /*val intent = Intent(this, SecondActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, thumb_button_1, "transition")
             ActivityCompat.startActivity(this, intent, options.toBundle())
+*/
 
+
+            thumb_button_1.setOnClickListener {
+
+                val intent = Intent(this, SecondActivity::class.java)
+                val activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Pair<View, String>(thumb_button_1, TRANS_IMAGE),
+                        Pair<View, String>(text_sample, TRANS_TEXT))
+                ActivityCompat.startActivity(this, intent, activityOptionsCompat.toBundle())
+
+            }
 
         }
 
@@ -173,5 +184,10 @@ class ZoomActivity : AppCompatActivity() {
                 start()
             }
         }
+    }
+
+    companion object {
+        const val TRANS_IMAGE = "IMAGE"
+        const val TRANS_TEXT = "TRANS_TEXT"
     }
 }

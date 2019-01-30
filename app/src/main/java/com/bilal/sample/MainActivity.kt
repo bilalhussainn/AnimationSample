@@ -3,10 +3,12 @@ package com.bilal.sample
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.graphics.Path
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.view.View
 import com.bilal.sample.helper.AnimationHelper
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
         //Animation API
 
         //AnimationHelper.fadeIn(test_view)
@@ -51,11 +55,11 @@ class MainActivity : AppCompatActivity() {
         //Animator API
 
         //AnimatorHelper.objectAnimator(text_int)
-        //AnimatorHelper.valueAnimator(text_int)
+        AnimatorHelper.valueAnimator(text_int)
         //AnimatorHelper.shake(text_int)
         //AnimatorHelper.multiplePropertyAnimator(text_int)
         //AnimatorHelper.resourcePropertyAnimation(this,text_int)
-        AnimatorHelper.resValueAnimator(this,text_int)
+        //AnimatorHelper.resValueAnimator(this,text_int)
 
 
 
